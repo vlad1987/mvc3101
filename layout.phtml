@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVC</title>
+</head>
+<body>
+    
+    <a href="/">Home</a>
+    <a href="/index.php?controller=book&amp;action=index">Books</a>
+    <a href="/index.php?controller=feedback&amp;action=contact">Contact us</a>
+    <hr>
+    
+    <?=$content ?>
+    <hr>
+    
+    <?php
+    var_dump($controller);
+    var_dump($action);
+    ?>
+</body>
+</html>
