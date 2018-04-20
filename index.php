@@ -1,22 +1,24 @@
 <?php
 
-require 'Request.php';
-require 'BookController.php';
-require 'DefaultController.php';
-require 'FeedbackController.php';
+spl_autoload_register(function($className) {
+    $className = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+    
+    require $className;
+});
 
-$request = new Request($_GET, $_POST);
+$request = new \Model\Request($_GET, $_POST);
 
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
 
-$controller = ucfirst($controller) . 'Controller';
+$controller =  ucfirst($controller) . 'Controller';
 $action .= 'Action';
 
-if (!file_exists($controller . '.php')) {
+if (!file_exists('Controller/' . $controller . '.php')) {
     die("{$controller} not found");
 }
 
+$controller = '\\Controller\\' . $controller;
 $controller = new $controller();
 
 if (!method_exists($controller, $action)) {
@@ -25,4 +27,4 @@ if (!method_exists($controller, $action)) {
 
 $content = $controller->$action();
 
-require 'layout.phtml';
+require 'View/layout.phtml';

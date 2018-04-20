@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 class Request
 {
     private $get = []; // $_GET
