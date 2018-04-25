@@ -2,10 +2,12 @@
 
 namespace Controller;
 
-class FeedbackController
+use Framework\Controller;
+
+class FeedbackController extends Controller
 {
     public function contactAction()
     {
-        return 3;
+        return $this->render('contact.phtml');
     }
 }

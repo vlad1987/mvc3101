@@ -2,10 +2,12 @@
 
 namespace Controller;
 
-class BookController
+use Framework\Controller;
+
+class BookController extends Controller
 {
     public function indexAction()
     {
-        return 2;
+        return $this->render('index.phtml');
     }
 }
