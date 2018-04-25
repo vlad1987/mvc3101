@@ -10,7 +10,7 @@ spl_autoload_register(function($className) {
     require $className;
 });
 
-$request = new \Model\Request($_GET, $_POST);
+$request = new \Framework\Request($_GET, $_POST);
 
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
