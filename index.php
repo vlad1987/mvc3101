@@ -18,17 +18,23 @@ $action = $request->get('action', 'index');
 $controller =  ucfirst($controller) . 'Controller';
 $action .= 'Action';
 
-if (!file_exists('Controller/' . $controller . '.php')) {
-    die("{$controller} not found");
+try {
+    if (!file_exists('Controller/' . $controller . '.php')) {
+        throw new \Exception("{$controller} not found");
+    }
+    
+    $controller = '\\Controller\\' . $controller;
+    $controller = new $controller();
+    
+    if (!method_exists($controller, $action)) {
+        throw new \Exception("{$action} not found");
+    }
+    
+    $content = $controller->$action();   
+} catch (\Exception $e) {
+    // todo: create exception controller object
+    // execute $content = $controller->errorAction()
+    $content = $e->getMessage(); // todo: fix
 }
 
-$controller = '\\Controller\\' . $controller;
-$controller = new $controller();
-
-if (!method_exists($controller, $action)) {
-    die("{$action} not found");
-}
-
-$content = $controller->$action();
-
-require 'View/layout.phtml';
+require VIEW_DIR . 'layout.phtml';

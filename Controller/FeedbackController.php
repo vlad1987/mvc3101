@@ -8,6 +8,10 @@ class FeedbackController extends Controller
 {
     public function contactAction()
     {
+        // get form object
+        // process form
+        // redirect or render page
+        
         return $this->render('contact.phtml');
     }
 }

@@ -13,7 +13,7 @@ class Controller
         $path = VIEW_DIR . $class . DS . $view;
         
         if (!file_exists($path)) {
-            die("{$path} not found");
+            throw new \Exception("{$path} not found");
         }
         
         ob_start();
