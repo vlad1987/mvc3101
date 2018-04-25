@@ -2,11 +2,12 @@
 
 namespace Controller;
 
+use Framework\Request;
 use Framework\Controller;
 
 class BookController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         // get DB connection (model)
         // get books from model

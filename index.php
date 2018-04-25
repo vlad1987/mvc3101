@@ -30,7 +30,7 @@ try {
         throw new \Exception("{$action} not found");
     }
     
-    $content = $controller->$action();   
+    $content = $controller->$action($request);   
 } catch (\Exception $e) {
     // todo: create exception controller object
     // execute $content = $controller->errorAction()
