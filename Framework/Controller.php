@@ -4,8 +4,9 @@ namespace Framework;
 
 class Controller
 {
-    protected function render($view)
+    protected function render($view, array $args = [])
     {
+        extract($args);
         $class = get_class($this);
         $class = strtolower(str_replace(['Controller', '\\'], '', $class));
         
