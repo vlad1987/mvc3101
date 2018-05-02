@@ -12,6 +12,7 @@ spl_autoload_register(function($className) {
 
 $request = new \Framework\Request($_GET, $_POST);
 $router = new \Framework\Router();
+$pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
 
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
@@ -27,6 +28,7 @@ try {
     $controller = '\\Controller\\' . $controller;
     $controller = (new $controller())
         ->setRouter($router)
+        ->setPdo($pdo)
     ;
     
     if (!method_exists($controller, $action)) {

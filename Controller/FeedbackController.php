@@ -18,6 +18,7 @@ class FeedbackController extends Controller
         
         if ($request->isPost()) {
             if ($form->isValid()) {
+                // $this->pdo;
                 // save to db
                 
                 // flash message
