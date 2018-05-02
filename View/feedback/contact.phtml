@@ -1,8 +1,8 @@
 <h1>feedback contact</h1>
 
 <form method="post">
-    <input type="text" name="name"/> <br>
-    <input type="email" name="email"/> <br>
-    <textarea name="message"></textarea> <br>
+    <input type="text" name="name" value="<?=$form->name ?>" /> <br>
+    <input type="email" name="email" value="<?=$form->email ?>"/> <br>
+    <textarea name="message"><?=$form->message ?></textarea> <br>
     <button type="submit">Go</button>
 </form>

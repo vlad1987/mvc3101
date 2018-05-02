@@ -11,6 +11,7 @@ spl_autoload_register(function($className) {
 });
 
 $request = new \Framework\Request($_GET, $_POST);
+$router = new \Framework\Router();
 
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
@@ -24,7 +25,9 @@ try {
     }
     
     $controller = '\\Controller\\' . $controller;
-    $controller = new $controller();
+    $controller = (new $controller())
+        ->setRouter($router)
+    ;
     
     if (!method_exists($controller, $action)) {
         throw new \Exception("{$action} not found");

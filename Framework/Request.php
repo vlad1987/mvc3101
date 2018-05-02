@@ -23,4 +23,9 @@ class Request
     {
         return isset($this->post[$key]) ? $this->post[$key] : $default;
     }
+    
+    public function isPost()
+    {
+        return (bool) $this->post;
+    }
 }

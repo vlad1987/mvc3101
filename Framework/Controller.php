@@ -4,6 +4,15 @@ namespace Framework;
 
 class Controller
 {
+    protected $router;
+    
+    public function setRouter(Router $router)
+    {
+        $this->router = $router;
+        
+        return $this;
+    }
+    
     protected function render($view, array $args = [])
     {
         extract($args);
