@@ -10,7 +10,6 @@ class FeedbackController extends Controller
 {
     public function contactAction(Request $request)
     {
-var_dump(\Framework\Registry::get('router'));
         $form = new FeedbackForm(
             $request->post('email'),
             $request->post('name'),
@@ -19,7 +18,10 @@ var_dump(\Framework\Registry::get('router'));
         
         if ($request->isPost()) {
             if ($form->isValid()) {
-                // $this->pdo;
+                $sth = $this->pdo->prepare('insert into feedback values (:x,:y,:z)');
+                $sth->execute(
+                // $form->email $form->name etc
+                );
                 // save to db
                 
                 // flash message

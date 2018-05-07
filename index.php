@@ -14,10 +14,6 @@ $request = new \Framework\Request($_GET, $_POST);
 $router = new \Framework\Router();
 $pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
 
-// just for education :)
-\Framework\Registry::set('router', $router);
-\Framework\Registry::set('pdo', $pdo);
-
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
 
