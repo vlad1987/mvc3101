@@ -13,6 +13,8 @@ spl_autoload_register(function($className) {
 $request = new \Framework\Request($_GET, $_POST);
 $router = new \Framework\Router();
 $pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
+$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
 $feedbackRepository = (new \Model\Repository\FeedbackRepository())->setPdo($pdo);
 
 $controller = $request->get('controller', 'default');
