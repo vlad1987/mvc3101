@@ -13,6 +13,7 @@ spl_autoload_register(function($className) {
 $request = new \Framework\Request($_GET, $_POST);
 $router = new \Framework\Router();
 $pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
+$feedbackRepository = (new \Model\Repository\FeedbackRepository())->setPdo($pdo);
 
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
@@ -29,6 +30,7 @@ try {
     $controller = (new $controller())
         ->setRouter($router)
         ->setPdo($pdo)
+        ->setFeedbackRepository($feedbackRepository)
     ;
     
     if (!method_exists($controller, $action)) {

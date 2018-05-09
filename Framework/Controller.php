@@ -2,11 +2,15 @@
 
 namespace Framework;
 
+use \Model\Repository\FeedbackRepository;
+
 class Controller
 {
     protected $router;
     
     protected $pdo;
+    
+    protected $feedbackRepository;
     
     public function setRouter(Router $router)
     {
@@ -18,6 +22,13 @@ class Controller
     public function setPdo(\PDO $pdo)
     {
         $this->pdo = $pdo;
+        
+        return $this;
+    }
+    
+    public function setFeedbackRepository(FeedbackRepository $feedbackRepository)
+    {
+        $this->feedbackRepository = $feedbackRepository;
         
         return $this;
     }
