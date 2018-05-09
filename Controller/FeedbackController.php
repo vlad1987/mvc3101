@@ -27,10 +27,8 @@ class FeedbackController extends Controller
                 ;
 
                 $this->feedbackRepository->save($feedback);
-                
-                // flash message
-                // redirect:
-                $this->router->redirect('/');
+                $this->session->setFlash('Feedback saved');
+                $this->router->redirect('/index.php?controller=feedback&action=contact');
             }
         }
         
