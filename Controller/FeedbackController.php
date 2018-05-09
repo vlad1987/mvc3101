@@ -5,6 +5,7 @@ namespace Controller;
 use Framework\Controller;
 use Framework\Request;
 use Model\Form\FeedbackForm;
+use Model\Entity\Feedback;
 
 class FeedbackController extends Controller
 {
@@ -18,11 +19,14 @@ class FeedbackController extends Controller
         
         if ($request->isPost()) {
             if ($form->isValid()) {
-                $sth = $this->pdo->prepare('insert into feedback values (:x,:y,:z)');
-                $sth->execute(
-                // $form->email $form->name etc
-                );
-                // save to db
+
+                $feedback = (new Feedback())
+                    ->setEmail($form->email)
+                    ->setName($form->name)
+                    ->setMessage($form->message)
+                ;
+
+                $this->feedbackRepository->save($feedback);
                 
                 // flash message
                 // redirect:
