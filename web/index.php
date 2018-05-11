@@ -3,6 +3,7 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS . '..' . DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
+define('CONFIG_DIR', ROOT . 'config' . DS);
 
 spl_autoload_register(function($className) {
     $className = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
@@ -10,15 +11,19 @@ spl_autoload_register(function($className) {
     require ROOT . $className;
 });
 
-$request = new \Framework\Request($_GET, $_POST);
-$router = new \Framework\Router();
+// config
+$routes = require CONFIG_DIR . 'routes.php';
+// $dbParams = ...
 
+// utils
+$request = new \Framework\Request($_GET, $_POST);
+$router = new \Framework\Router($routes);
 $pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
 $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
 $feedbackRepository = (new \Model\Repository\FeedbackRepository())->setPdo($pdo);
 $session = (new \Framework\Session())->start();
 
+// run app
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
 
