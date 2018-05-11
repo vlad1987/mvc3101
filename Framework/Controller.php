@@ -12,6 +12,8 @@ class Controller
     
     protected $feedbackRepository;
     
+    protected $session;
+    
     public function setRouter(Router $router)
     {
         $this->router = $router;
@@ -29,6 +31,13 @@ class Controller
     public function setFeedbackRepository(FeedbackRepository $feedbackRepository)
     {
         $this->feedbackRepository = $feedbackRepository;
+        
+        return $this;
+    }
+    
+    public function setSession(Session $session)
+    {
+        $this->session = $session;
         
         return $this;
     }
