@@ -8,10 +8,13 @@ class Request
     
     private $post = []; // $_POST
     
-    public function __construct(array $get = [], array $post = [])
+    private $server = []; // $_SERVER
+    
+    public function __construct(array $get = [], array $post = [], array $server = [])
     {
         $this->get = $get;
         $this->post = $post;
+        $this->server = $server;
     }
     
     public function get($key, $default = null)
@@ -22,6 +25,23 @@ class Request
     public function post($key, $default = null)
     {
         return isset($this->post[$key]) ? $this->post[$key] : $default;
+    }
+    
+    public function server($key, $default = null)
+    {
+        return isset($this->server[$key]) ? $this->server[$key] : $default;
+    }
+    
+    public function getUrl()
+    {
+        $url = $this->server('REQUEST_URI');
+        
+        if (!$url) {
+            return null;
+        }
+        $url = explode('?', $url);
+        
+        return $url[0];
     }
     
     public function isPost()

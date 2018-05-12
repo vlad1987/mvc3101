@@ -16,7 +16,7 @@ $routes = require CONFIG_DIR . 'routes.php';
 // $dbParams = ...
 
 // utils
-$request = new \Framework\Request($_GET, $_POST);
+$request = new \Framework\Request($_GET, $_POST, $_SERVER);
 $router = new \Framework\Router($routes);
 $pdo = new \PDO('mysql:host=localhost;dbname=mvc1', 'root', null); // todo: config file
 $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
