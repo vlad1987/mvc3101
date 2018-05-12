@@ -4,17 +4,20 @@ return [
     
     'default' => [
         'controller' => 'DefaultController',
-        'action' => 'indexAction'
+        'action' => 'indexAction',
+        'path' => '/'
     ],
     
     'book_list' => [
         'controller' => 'BookController',
-        'action' => 'indexAction'
+        'action' => 'indexAction',
+        'path' => '/books'
     ],
     
     'feedback' => [
         'controller' => 'FeedbackController',
-        'action' => 'contactAction'
+        'action' => 'contactAction',
+        'path' => '/feedback'
     ]
     
 ];
