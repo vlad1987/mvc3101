@@ -28,8 +28,6 @@ $router->match($request);
 $controller = $router->getCurrentController();
 $action = $router->getCurrentAction();
 
-var_dump($controller, $action);
-
 try {
     if (!file_exists(ROOT . 'Controller' . DS . $controller . '.php')) {
         throw new \Exception("{$controller} not found");

@@ -16,14 +16,11 @@ class Router
     public function match(Request $request)
     {
         $url = $request->getUrl(); // book/213
-        // var_dump($url);
         $routes = $this->routes;
-        // var_dump($routes);
         
         foreach ($routes as $route) {
             // loop through available routes
             $pattern = $route['pattern'];
-            // var_dump($pattern);
             
             if (!empty($route['parameters'])) {
                 // var_dump($route['parameters']);
@@ -37,10 +34,8 @@ class Router
             }
             
             $pattern = '@^' . $pattern . '$@';
-            // var_dump($pattern);
             
             if (preg_match($pattern, $url, $matches)) {
-                // var_dump($matches);
                 // remove match by whole regexp
                 array_shift($matches);
                 // var_dump($matches);
@@ -51,15 +46,10 @@ class Router
                         $matches
                     ); 
                     
-                    // var_dump($result);
-                    
                     $request->mergeGetWithArray($result);
                 }
                 
                 $this->currentRoute = $route;
-                
-                
-                var_dump($this->currentRoute);
                 
                 return;
             }
