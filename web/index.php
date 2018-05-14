@@ -24,6 +24,7 @@ $feedbackRepository = (new \Model\Repository\FeedbackRepository())->setPdo($pdo)
 $session = (new \Framework\Session())->start();
 
 // run app
+$router->match($request);
 $controller = $request->get('controller', 'default');
 $action = $request->get('action', 'index');
 
