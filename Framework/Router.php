@@ -66,6 +66,25 @@ class Router
         }
     }
     
+    public function getCurrentController()
+    {
+        return $this->getCurrentRouteAttribute('controller');
+    }
+    
+    public function getCurrentAction()
+    {
+        return $this->getCurrentRouteAttribute('action');
+    }
+    
+    private function getCurrentRouteAttribute($key)
+    {
+        if (!$this->currentRoute) {
+            return null;
+        }
+        
+        return $this->currentRoute[$key];
+    }
+    
     public static function redirect($to)
     {
         header("Location: {$to}");
