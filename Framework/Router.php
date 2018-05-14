@@ -6,6 +6,8 @@ class Router
 {
     private $routes;
     
+    private $currentRoute;
+    
     public function __construct(array $routes)
     {
         $this->routes = $routes;
@@ -14,9 +16,9 @@ class Router
     public function match(Request $request)
     {
         $url = $request->getUrl(); // book/213
-        var_dump($url);
+        // var_dump($url);
         $routes = $this->routes;
-        var_dump($routes);
+        // var_dump($routes);
         
         foreach ($routes as $route) {
             // loop through available routes
@@ -35,7 +37,32 @@ class Router
             }
             
             $pattern = '@^' . $pattern . '$@';
-            var_dump($pattern);
+            // var_dump($pattern);
+            
+            if (preg_match($pattern, $url, $matches)) {
+                // var_dump($matches);
+                // remove match by whole regexp
+                array_shift($matches);
+                // var_dump($matches);
+                
+                if (!empty($route['parameters'])) {
+                    $result = array_combine(
+                        array_keys($route['parameters']),
+                        $matches
+                    ); 
+                    
+                    // var_dump($result);
+                    
+                    $request->mergeGetWithArray($result);
+                }
+                
+                $this->currentRoute = $route;
+                
+                
+                var_dump($this->currentRoute);
+                
+                return;
+            }
         }
     }
     
