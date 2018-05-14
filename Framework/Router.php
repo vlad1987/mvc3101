@@ -64,6 +64,8 @@ class Router
                 return;
             }
         }
+        
+        throw new \Exception('Page not found', 404);
     }
     
     public function getCurrentController()
