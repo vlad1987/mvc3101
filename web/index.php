@@ -24,11 +24,11 @@ $feedbackRepository = (new \Model\Repository\FeedbackRepository())->setPdo($pdo)
 $session = (new \Framework\Session())->start();
 
 // run app
-$router->match($request);
-$controller = $router->getCurrentController();
-$action = $router->getCurrentAction();
-
 try {
+    $router->match($request);
+    $controller = $router->getCurrentController();
+    $action = $router->getCurrentAction();
+    
     if (!file_exists(ROOT . 'Controller' . DS . $controller . '.php')) {
         throw new \Exception("{$controller} not found");
     }
