@@ -25,11 +25,10 @@ $session = (new \Framework\Session())->start();
 
 // run app
 $router->match($request);
-$controller = $request->get('controller', 'default');
-$action = $request->get('action', 'index');
+$controller = $router->getCurrentController();
+$action = $router->getCurrentAction();
 
-$controller =  ucfirst($controller) . 'Controller';
-$action .= 'Action';
+var_dump($controller, $action);
 
 try {
     if (!file_exists(ROOT . 'Controller' . DS . $controller . '.php')) {
