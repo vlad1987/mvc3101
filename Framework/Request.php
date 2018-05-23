@@ -48,4 +48,10 @@ class Request
     {
         return (bool) $this->post;
     }
+    
+    public function mergeGetWithArray(array $arr)
+    {
+        $_GET += $arr;
+        $this->get += $arr;
+    }
 }
