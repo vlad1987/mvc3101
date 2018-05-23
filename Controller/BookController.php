@@ -20,4 +20,10 @@ class BookController extends Controller
             'authors' => $authors
         ]);
     }
+    
+    public function showAction(Request $request)
+    {
+        // var_dump($_GET);
+        return $request->get('id');
+    }
 }

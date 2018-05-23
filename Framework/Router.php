@@ -17,10 +17,11 @@ class Router
     {
         $url = $request->getUrl(); // book/213
         $routes = $this->routes;
-        
+        var_dump($routes);
         foreach ($routes as $route) {
             // loop through available routes
             $pattern = $route['pattern'];
+            var_dump($pattern);
             
             if (!empty($route['parameters'])) {
                 // var_dump($route['parameters']);
@@ -30,15 +31,17 @@ class Router
                         '(' . $regex . ')', 
                         $pattern
                     );
+                    var_dump($pattern);
                 }
             }
             
             $pattern = '@^' . $pattern . '$@';
-            
+            var_dump($pattern);
             if (preg_match($pattern, $url, $matches)) {
                 // remove match by whole regexp
+                var_dump($matches);
                 array_shift($matches);
-                // var_dump($matches);
+                var_dump($matches);
                 
                 if (!empty($route['parameters'])) {
                     $result = array_combine(
@@ -46,6 +49,7 @@ class Router
                         $matches
                     ); 
                     
+                    var_dump($result);
                     $request->mergeGetWithArray($result);
                 }
                 
